@@ -34,7 +34,7 @@ task :install do
 end
 
 def map(file)
-  @mapping ||= YAML::load('mapping.yml')
+  @mapping ||= YAML::load(File.open('mapping.yml'))
   m = '.#filename#'
   m = @mapping[file] if @mapping[file]
   File.join('~', m.gsub(/#filename#/, file))
