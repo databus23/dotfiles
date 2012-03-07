@@ -7,7 +7,6 @@ PS1='\u@\h:\w\$ '
 export TITLEBAR='\[\033]0;\u@\h:\w \007\]'
 
 PS1="$TITLEBAR$PS1"
-export EDITOR=/usr/bin/vim
 
 if [ -f ~/.bashrc ]; then
   source ~/.bashrc
