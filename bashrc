@@ -44,7 +44,7 @@ case `uname -s` in
 esac
 
 alias reload='source ~/.bashrc'
-alias update_dotfiles='cd dotfiles;rake install; cd $OLDPW'
+alias update_dotfiles='cd dotfiles;git pull;rake install; cd $OLDPW'
 
 # use .bashrc_local for settings specific to one system
 if [ -f ~/.bashrc_local ]; then
