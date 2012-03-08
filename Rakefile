@@ -37,7 +37,7 @@ def map(file)
   @mapping ||= YAML::load(File.open('mapping.yml'))
   m = '.#filename#'
   m = @mapping[file] if @mapping[file]
-  File.join('~', m.gsub(/#filename#/, file))
+  File.join('~', m.gsub(/#filename#/, file).gsub(/\.erb$/,''))
 end
 
 def replace_file(file)
@@ -48,9 +48,12 @@ end
 def link_file(file)
   dest = map file
   if file =~ /.erb$/
-    puts "generating #{dest}))"
-    File.open(File.join(ENV['HOME'], dest, 'w')) do |new_file|
-      new_file.write ERB.new(File.read(file)).result(binding)
+    puts "generating #{dest}"
+    dest_expanded = File.expand_path dest 
+    File.open(dest_expanded, 'w') do |new_file|
+      new_file.write ERB.new(File.read(file),nil,'<>').result(binding)
+      local_file = "#{dest_expanded}.local"
+      new_file.write File.read(local_file) if File.exists? local_file
     end
   else
     puts "linking #{dest}"
