@@ -2,6 +2,13 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+"pathogen init
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
+
+filetype plugin indent on
+
+"tab settings
 set tabstop=2
 set expandtab
 set shiftwidth=2
@@ -13,8 +20,8 @@ let g:liquidcarbon_high_contrast = 1
 let g:molokai_original = 0
 set t_Co=256
 set background=dark
-"colorscheme molokai
-colorscheme solarized
+colorscheme molokai
+"colorscheme solarized
 
 set showmatch
 
@@ -37,3 +44,11 @@ function! OpenURL()
   endif
 endfunction
 map <Leader>w :call OpenURL()<CR>
+
+
+"NERDTree stuff
+command NT NERDTreeToggle
+nmap <Leader>n :NERDTreeToggle<CR>
+let NERDTreeIgnore=['tmp', 'pkg$']
+"autocmd vimenter * if !argc() | NERDTree | endif
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif

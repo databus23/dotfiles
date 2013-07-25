@@ -1,0 +1,11 @@
+[user]
+	name = Fabian Ruff
+	email = fabian@progra.de
+[color]
+	ui = auto
+[difftool]
+  prompt = false
+[mergetool]
+	prompt = false
+[include]
+  path = .gitconfig.local

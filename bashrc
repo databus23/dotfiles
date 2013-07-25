@@ -13,7 +13,7 @@ fi
 
 export EDITOR=/usr/bin/vim
 
-PATH=$HOME/bin:$PATH
+PATH=$HOME/bin:/usr/local/sbin:$PATH
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
@@ -50,3 +50,6 @@ alias update_dotfiles='cd dotfiles;git pull;rake install; cd $OLDPW'
 if [ -f ~/.bashrc_local ]; then
   source ~/.bashrc_local
 fi
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
