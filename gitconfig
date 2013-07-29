@@ -7,5 +7,7 @@
   prompt = false
 [mergetool]
 	prompt = false
+[push]
+  default = simple
 [include]
   path = .gitconfig.local
