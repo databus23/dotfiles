@@ -26,6 +26,11 @@ set softtabstop=2
 " Add line numbers
 set number
 set ruler
+"relative ruler
+set relativenumber
+
+"scroll when the cursor is three lines from the bottom/top
+set scrolloff=3
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -46,7 +51,38 @@ let g:solarized_termcolors=256
 "colorscheme solarized
 "colorscheme smyck
 
+"search related stuff
+nnoremap / /\v
+vnoremap / /\v
+set ignorecase
+set smartcase
+set gdefault
+set incsearch
 set showmatch
+set hlsearch
+nnoremap <leader><space> :noh<cr>
+nnoremap <tab> %
+vnoremap <tab> %
+
+"wrapping
+set wrap
+set showbreak=…
+set linebreak
+
+"disable arrow keys for training
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+"nnoremap j gj
+"nnoremap k gk
+
+" use double j as ESC
+inoremap jj <ESC>
 
 let mapleader=" "
 
@@ -55,7 +91,8 @@ set listchars=tab:▸\ ,eol:¬
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 
-" Shortcut to reload vimrc
+" Shortcut to edit/reload vimrc
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 "NERDTree stuff
