@@ -44,12 +44,8 @@ case `uname -s` in
 esac
 
 alias reload='source ~/.bashrc'
-alias update_dotfiles='cd dotfiles;git pull;rake install; cd $OLDPW'
 
 # use .bashrc_local for settings specific to one system
 if [ -f ~/.bashrc_local ]; then
   source ~/.bashrc_local
 fi
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
