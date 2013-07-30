@@ -57,7 +57,7 @@ symlink() {
 pushd $ABSOLUTE_PATH >/dev/null
 
 #symlink dotfiles & dirs
-for f in bash_profile bashrc gitconfig githelpers gitignore gvimrc vimrc; do
+for f in bash_profile bashrc irbrc gemrc gitconfig githelpers gitignore gvimrc vimrc; do
   symlink $ABSOLUTE_PATH/$f $HOME/.$f
 done
 # symlink fish config
