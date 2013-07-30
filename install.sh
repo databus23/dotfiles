@@ -54,7 +54,7 @@ symlink() {
   ln -s $dest $src 
 }
 #ensure cwd is the root of the dotfile checkout
-pushd $ABSOLUTE_PATH
+pushd $ABSOLUTE_PATH >/dev/null
 
 #symlink dotfiles & dirs
 for f in bash_profile bashrc gitconfig githelpers gitignore gvimrc vimrc; do
@@ -66,4 +66,4 @@ for f in `find fish -type f`; do
 done
 
 #back to the original directory
-popd
+popd >/dev/null
