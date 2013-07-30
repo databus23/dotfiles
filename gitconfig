@@ -1,6 +1,8 @@
 [user]
 	name = Fabian Ruff
 	email = fabian@progra.de
+[core]
+  excludesfile = ~/.gitignore
 [color]
 	ui = auto
 [difftool]
