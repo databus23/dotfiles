@@ -1,12 +1,12 @@
 set -g fish_greeting ''
 
-set EDITOR '/usr/bin/mvim -f'
-
 set PATH /usr/local/bin /usr/local/sbin $PATH
 set PATH $HOME/bin $PATH
 
-. /usr/local/share/chruby/chruby.fish
-. /usr/local/share/chruby/auto.fish
+set -x EDITOR (which vim)
+#load chruby if available
+test -f /usr/local/share/chruby/chruby.fish; and . /usr/local/share/chruby/chruby.fish
+test -f /usr/local/share/chruby/chruby.fish; and . /usr/local/share/chruby/auto.fish
 
 #git aliases
 alias gs='git status'
