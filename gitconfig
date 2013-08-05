@@ -1,14 +1,14 @@
 [user]
-	name = Fabian Ruff
-	email = fabian@progra.de
+  name = Fabian Ruff
+  email = fabian@progra.de
 [core]
   excludesfile = ~/.gitignore
 [color]
-	ui = auto
+  ui = auto
 [difftool]
   prompt = false
 [mergetool]
-	prompt = false
+  prompt = false
 [push]
   default = simple
 [include]
