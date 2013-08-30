@@ -105,3 +105,8 @@ let NERDTreeIgnore=['tmp', 'pkg$']
 autocmd FileType make set noexpandtab
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 "autocmd BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
+
+if has("win32")
+  command! -bar Fullscreen :call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
+endif
+
