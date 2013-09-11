@@ -6,6 +6,7 @@ git submodule update
 
 copy %DOTFILES%vimrc %USERPROFILE%\_vimrc /Y
 copy %DOTFILES%gvimrc %USERPROFILE%\_gvimrc /Y
+copy %DOTFILES%gitconfig %USERPROFILE%\.gitconfig /Y
 xcopy %DOTFILES%vim   %USERPROFILE%\vimfiles /I /E /Y
 
 pause

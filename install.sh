@@ -56,6 +56,9 @@ symlink() {
 #ensure cwd is the root of the dotfile checkout
 pushd $ABSOLUTE_PATH >/dev/null
 
+git submodule init
+git submodule update
+
 #symlink dotfiles & dirs
 for f in bash_profile bashrc irbrc gemrc gitconfig githelpers gitignore gvimrc vimrc; do
   symlink $ABSOLUTE_PATH/$f $HOME/.$f
