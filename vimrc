@@ -110,3 +110,5 @@ if has("win32")
   command! -bar Fullscreen :call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
 endif
 
+"fugitive settings
+let g:fugitive_github_domains = ['github.com', 'github.wdf.sap.corp']

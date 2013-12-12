@@ -13,3 +13,5 @@
   default = simple
 [include]
   path = .gitconfig.local
+[web]
+  browser = open
