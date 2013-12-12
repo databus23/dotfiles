@@ -2,8 +2,14 @@ set -g fish_greeting ''
 
 set PATH /usr/local/bin /usr/local/sbin $PATH
 set PATH $HOME/bin $PATH
-
-set -x EDITOR (which vim)
+set -x JAVA_HOME (/usr/libexec/java_home)
+set -x EC2_HOME $HOME/Applications/ec2-api-tools-1.6.7.2
+set PATH $EC2_HOME/bin $PATH
+if which -s mvim
+  set -x EDITOR (which mvim)" -f"
+else
+  set -x EDITOR (which vim)
+end
 #load chruby if available
 test -f /usr/local/share/chruby/chruby.fish; and . /usr/local/share/chruby/chruby.fish
 test -f /usr/local/share/chruby/chruby.fish; and . /usr/local/share/chruby/auto.fish
