@@ -7,6 +7,7 @@ set -x EC2_HOME $HOME/Applications/ec2-api-tools-1.6.7.2
 set PATH $EC2_HOME/bin $PATH
 if which -s mvim
   set -x EDITOR (which mvim)" -f"
+  set -x BUNDLER_EDITOR (which mvim)
 else
   set -x EDITOR (which vim)
 end
