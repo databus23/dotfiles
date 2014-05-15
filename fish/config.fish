@@ -15,6 +15,9 @@ end
 test -f /usr/local/share/chruby/chruby.fish; and . /usr/local/share/chruby/chruby.fish
 test -f /usr/local/share/chruby/chruby.fish; and . /usr/local/share/chruby/auto.fish
 
+set -x GOPATH ~/gocode
+set PATH $GOPATH/bin $PATH
+
 #git aliases
 alias gs='git status'
 alias ga='git add .'
@@ -32,6 +35,7 @@ alias vp='vagrant provision'
 #rails aliases
 alias r='bundle exec rails'
 alias be='bundle exec'
+alias delete_swp_files='find . -name \*.swp -delete'
 
 set netloc (/usr/sbin/scselect 2>&1 | egrep '^ \*' | sed 's:.*(\(.*\)):\1:'|tr [A-Z] [a-z])
 
@@ -52,3 +56,4 @@ function fish_user_key_bindings
   bind \e\[1\;9D 'backward-word'
 end
 
+. ~/.config/fish/config.local.fish
