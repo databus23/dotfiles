@@ -43,3 +43,9 @@
 [submodule "vim/bundle/ag.vim"]
 	path = vim/bundle/ag.vim
 	url = https://github.com/rking/ag.vim.git
+[submodule "vim/bundle/vim-fish"]
+	path = vim/bundle/vim-fish
+	url = https://github.com/dag/vim-fish.git
+[submodule "vim/bundle/file-line"]
+	path = vim/bundle/file-line
+	url = https://github.com/bogado/file-line.git
