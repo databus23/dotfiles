@@ -60,7 +60,7 @@ git submodule init
 git submodule update
 
 #symlink dotfiles & dirs
-for f in bash_profile bashrc irbrc gemrc gitconfig githelpers gitignore gvimrc vimrc; do
+for f in bash_profile bashrc irbrc gemrc gitconfig githelpers gitignore gvimrc vimrc vim; do
   symlink $ABSOLUTE_PATH/$f $HOME/.$f
 done
 # symlink fish config
