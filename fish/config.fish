@@ -2,15 +2,12 @@ set -g fish_greeting ''
 
 set PATH /usr/local/bin /usr/local/sbin $PATH
 set PATH $HOME/bin $PATH
-set -x JAVA_HOME (/usr/libexec/java_home)
+if test -f /usr/libexec/java_home
+  set -x JAVA_HOME (/usr/libexec/java_home)
+end
 set -x EC2_HOME $HOME/Applications/ec2-api-tools-1.6.7.2
 set PATH $EC2_HOME/bin $PATH
-if which -s mvim
-  set -x EDITOR (which mvim)" -f"
-  set -x BUNDLER_EDITOR (which mvim)
-else
-  set -x EDITOR (which vim)
-end
+set -x EDITOR (which vim)
 #load chruby if available
 test -f /usr/local/share/chruby/chruby.fish; and . /usr/local/share/chruby/chruby.fish
 test -f /usr/local/share/chruby/chruby.fish; and . /usr/local/share/chruby/auto.fish
@@ -37,17 +34,6 @@ alias r='bundle exec rails'
 alias be='bundle exec'
 alias delete_swp_files='find . -name \*.swp -delete'
 
-set netloc (/usr/sbin/scselect 2>&1 | egrep '^ \*' | sed 's:.*(\(.*\)):\1:'|tr [A-Z] [a-z])
-
-# source host specific config
-if functions -q $netloc"_env"  
-  echo "Loading environment $netloc"
-  eval $netloc"_env"
-else
-  echo "Loading default env"
-  default_env
-end
-
 function fish_user_key_bindings
   bind \e.       'history-token-search-backward'
   bind \e\[1\;9A 'history-token-search-backward'
@@ -56,4 +42,7 @@ function fish_user_key_bindings
   bind \e\[1\;9D 'backward-word'
 end
 
-. ~/.config/fish/config.local.fish
+
+set platform (uname| tr '[:upper:]' '[:lower:]')
+test -f ~/.config/fish/$platform.fish; and . ~/.config/fish/$platform.fish
+test -f ~/.config/fish/config.local.fish; and . ~/.config/fish/config.local.fish
