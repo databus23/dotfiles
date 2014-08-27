@@ -6,7 +6,7 @@ set netloc (/usr/sbin/scselect 2>&1 | egrep '^ \*' | sed 's:.*(\(.*\)):\1:'|tr [
 
 # source host specific config
 if functions -q $netloc"_env"
-  echo "Loading environment $netloc"
+  echo "Loading $netloc environment"
   eval $netloc"_env"
 else
   echo "Loading default env"

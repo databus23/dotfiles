@@ -21,6 +21,7 @@ alias ga='git add .'
 alias gc='git commit'
 alias gd='git diff'
 alias gdt='git difftool'
+alias gt='gittower .'
 
 alias listening_ports='sudo lsof -P -n -i|grep LISTEN|sort -k5'
 alias flushdns='sudo killall -HUP mDNSResponder'
