@@ -53,10 +53,6 @@ function fish_prompt
     set git_info " $yellow‹$git_info$indicator$yellow›"
   end
 
-  if type -P autojump >/dev/null
-    autojump -a $PWD > /dev/null &
-  end
-
   echo -n -s $arrow $cwd $ruby_info $git_info $normal ' '
 end
 
