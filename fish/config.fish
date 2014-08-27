@@ -47,4 +47,4 @@ end
 set platform (uname| tr '[:upper:]' '[:lower:]')
 test -f ~/.config/fish/$platform.fish; and . ~/.config/fish/$platform.fish
 test -f ~/.config/fish/config.local.fish; and . ~/.config/fish/config.local.fish
-. ~/.config/fish/autojump.fish
+test -f /usr/local/etc/autojump.fish; and . /usr/local/etc/autojump.fish
