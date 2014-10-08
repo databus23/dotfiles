@@ -98,6 +98,7 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 "NERDTree stuff
 nmap <Leader>n :NERDTreeToggle<CR>
 let NERDTreeIgnore=['tmp', 'pkg$']
+let NERDTreeShowHidden=1
 "autocmd vimenter * if !argc() | NERDTree | endif
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
