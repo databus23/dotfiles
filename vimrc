@@ -29,6 +29,10 @@ set ruler
 "relative ruler
 "set relativenumber
 
+" disable swp files \o/ 
+no swapfile
+no backup
+
 "scroll when the cursor is three lines from the bottom/top
 set scrolloff=3
 
