@@ -10,7 +10,7 @@
 [mergetool]
   prompt = false
 [push]
-  default = simple
+  default = upstream 
 [include]
   path = .gitconfig.local
 [web]
