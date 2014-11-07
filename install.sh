@@ -3,6 +3,14 @@
 
 ABSOLUTE_PATH=$(cd `dirname "${BASH_SOURCE[0]}"` && pwd)
 
+while getopts "f" arg; do
+  case $arg in
+    f)
+      FORCE=1
+      ;;
+  esac
+done
+
 fail() {
   echo $1
   exit 1
@@ -11,7 +19,11 @@ fail() {
 ask_overwrite(){
   local src=$1
   echo -n "File $src already exists. [s]kip,[o]verwrite,[b]ackup? "
-  read -n1 choice
+  if [ -z "$FORCE" ]; then
+    read -n1 choice
+  else
+    choice=o
+  fi
   echo
   case $choice in
     o)
