@@ -6,7 +6,7 @@
 PS1='\u@\h:\w\$ '
 export TITLEBAR='\[\033]0;\u@\h:\w \007\]'
 
-PS1="$TITLEBAR$PS1"
+[ -n "$SSH_CLIENT" ] && PS1="$TITLEBAR$PS1"
 
 if [ -f ~/.bashrc ]; then
   source ~/.bashrc
