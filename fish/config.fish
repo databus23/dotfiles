@@ -15,6 +15,10 @@ test -f /usr/local/share/chruby/chruby.fish; and . /usr/local/share/chruby/auto.
 set -x GOPATH ~/gocode
 set PATH $GOPATH/bin $PATH
 
+alias ls='ls -A'
+
+#ssh aliases
+alias ssh-no-check='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 #git aliases
 alias gs='git status'
 alias ga='git add .'
