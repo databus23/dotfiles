@@ -1,7 +1,6 @@
 set -g fish_greeting ''
 
 set PATH /usr/local/bin /usr/local/sbin $PATH
-set PATH $HOME/bin $PATH
 if test -f /usr/libexec/java_home
   set -x JAVA_HOME (/usr/libexec/java_home)
 end
@@ -14,6 +13,7 @@ test -f /usr/local/share/chruby/chruby.fish; and . /usr/local/share/chruby/auto.
 
 set -x GOPATH ~/gocode
 set PATH $GOPATH/bin $PATH
+set PATH $HOME/bin $PATH
 
 alias ls='ls -A'
 
