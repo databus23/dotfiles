@@ -13,6 +13,8 @@ test -f /usr/local/share/chruby/chruby.fish; and . /usr/local/share/chruby/auto.
 
 set -x GOPATH ~/gocode
 set PATH $GOPATH/bin $PATH
+set PATH /usr/local/opt/go/libexec/bin $PATH
+set PATH $HOME/Library/Python/2.7/bin $PATH
 set PATH $HOME/bin $PATH
 
 alias ls='ls -A'

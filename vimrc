@@ -15,7 +15,7 @@ execute pathogen#infect()
 filetype plugin indent on
 
 "prevents some security exploits having to do with modelines
-set modelines=0
+set modelines=3
 
 "tab settings
 set tabstop=2

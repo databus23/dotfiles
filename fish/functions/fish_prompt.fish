@@ -7,7 +7,7 @@ function _is_git_dirty
 end
 
 function _rbenv_version
-  if type -P rbenv >/dev/null
+  if type -q -P rbenv
     echo (rbenv version-name | sed -e 's/ .*//')
   end
 end
@@ -35,7 +35,6 @@ function fish_prompt
     set ruby_info " $red‹$ruby_info›"
   end
 
-
   if [ (_chruby_version) ]
     set ruby_info (_chruby_version)
     set ruby_info " $red‹$ruby_info›"
@@ -55,4 +54,3 @@ function fish_prompt
 
   echo -n -s $arrow $cwd $ruby_info $git_info $normal ' '
 end
-
