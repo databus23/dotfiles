@@ -97,7 +97,8 @@ On_Purple='\e[45m'      # Purple
 On_Cyan='\e[46m'        # Cyan
 On_White='\e[47m'       # White
 
-export PS1="[ $Red\u@\h$Color_Off ] $Blue\w$Color_Off\n$Red➜$Color_Off "
+# \xe2\x9e\x9c is ➜
+export PS1="[ $Red\u@\h$Color_Off ] $Blue\w$Color_Off\n$Red->$Color_Off "
 
 # use .bashrc_local for settings specific to one system
 if [ -f ~/.bashrc_local ]; then
