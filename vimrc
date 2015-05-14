@@ -117,3 +117,9 @@ endif
 
 "fugitive settings
 let g:fugitive_github_domains = ['github.com', 'github.wdf.sap.corp']
+
+"go specific stuff
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
