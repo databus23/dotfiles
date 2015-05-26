@@ -52,3 +52,6 @@
 [submodule "vim/bundle/Dockerfile"]
 	path = vim/bundle/Dockerfile
 	url = https://github.com/ekalinin/Dockerfile.vim.git
+[submodule "vim/bundle/auto-pairs"]
+	path = vim/bundle/auto-pairs
+	url = https://github.com/jiangmiao/auto-pairs.git
