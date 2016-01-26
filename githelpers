@@ -21,11 +21,10 @@ function github_url() {
   local remote="$(git remote -v 2> /dev/null | awk '/^origin.*\(push\)$/ {print $2}')"
 
   [[ "$remote" ]] || return
-
-  if [[ "$remote" =~ .+@(github.+)[:|/](.+)/(.+).git ]]; then
-    host="${BASH_REMATCH[1]}"
-    user="${BASH_REMATCH[2]}"
-    repo="${BASH_REMATCH[3]}"
+  if [[ "$remote" =~ .+(://|@)(github.+)[:|/](.+)/(.+).git ]]; then
+    host="${BASH_REMATCH[2]}"
+    user="${BASH_REMATCH[3]}"
+    repo="${BASH_REMATCH[4]}"
 
     printf "https://$host/$user/$repo\n"
   fi
@@ -33,6 +32,7 @@ function github_url() {
 
 function pretty_github_log() {
   local url=$(github_url)
+  echo $url
 
   git log --graph --pretty="tformat:$FORMAT" $* |
   awk "$(cat <<AWK
