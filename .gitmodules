@@ -55,3 +55,6 @@
 [submodule "vim/bundle/auto-pairs"]
 	path = vim/bundle/auto-pairs
 	url = https://github.com/jiangmiao/auto-pairs.git
+[submodule "vim/bundle/vim-concourse"]
+	path = vim/bundle/vim-concourse
+	url = https://github.com/luan/vim-concourse.git
