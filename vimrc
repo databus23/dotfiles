@@ -138,3 +138,9 @@ let g:SuperTabDefaultCompletionType = "context"
 
 "dash search mapping
 :nmap <silent> <leader>d <Plug>DashSearch
+
+"spell checking
+set spelllang=en
+set spellfile=$HOME/dotfiles/vim/spell/en.utf-8.add
+au BufNewFile,BufRead,BufEnter *.md setlocal spell
+au BufNewFile,BufRead,BufEnter *.slide setlocal spell

@@ -1,5 +1,8 @@
 set -g fish_greeting ''
 
+#pyhton freaks out without it
+set -x LC_ALL en_US.UTF-8
+
 set PATH /usr/local/bin /usr/local/sbin $PATH
 if test -f /usr/libexec/java_home
   set -x JAVA_HOME (/usr/libexec/java_home)
@@ -11,6 +14,11 @@ set -x EDITOR (which vim)
 test -f /usr/local/share/chruby/chruby.fish; and . /usr/local/share/chruby/chruby.fish
 test -f /usr/local/share/chruby/chruby.fish; and . /usr/local/share/chruby/auto.fish
 
+#load direnv if available
+if which -s direnv
+  eval (direnv hook fish)
+end
+
 set -x GOPATH ~/gocode
 set PATH $GOPATH/bin $PATH
 #set PATH /usr/local/opt/go/libexec/bin $PATH
@@ -18,6 +26,10 @@ set PATH $HOME/Library/Python/2.7/bin $PATH
 set PATH $HOME/bin $PATH
 
 alias ls='ls -A'
+
+#kubectl aliaes
+alias context='kubectl config view --template \'{{index . "current-context"}}\' -o template;echo'
+alias pods='kubectl get pods -o wide'
 
 #ssh aliases
 alias ssh-no-check='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
