@@ -7,8 +7,6 @@ set PATH /usr/local/bin /usr/local/sbin $PATH
 if test -f /usr/libexec/java_home
   set -x JAVA_HOME (/usr/libexec/java_home)
 end
-set -x EC2_HOME $HOME/Applications/ec2-api-tools-1.6.7.2
-set PATH $EC2_HOME/bin $PATH
 set -x EDITOR (which vim)
 #load chruby if available
 test -f /usr/local/share/chruby/chruby.fish; and . /usr/local/share/chruby/chruby.fish
@@ -21,8 +19,6 @@ end
 
 set -x GOPATH ~/gocode
 set PATH $GOPATH/bin $PATH
-#set PATH /usr/local/opt/go/libexec/bin $PATH
-set PATH $HOME/Library/Python/2.7/bin $PATH
 set PATH $HOME/bin $PATH
 
 alias ls='ls -A'
