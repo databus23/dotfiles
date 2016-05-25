@@ -58,3 +58,6 @@
 [submodule "vim/bundle/vim-concourse"]
 	path = vim/bundle/vim-concourse
 	url = https://github.com/luan/vim-concourse.git
+[submodule "vim/bundle/tagbar"]
+	path = vim/bundle/tagbar
+	url = https://github.com/majutsushi/tagbar.git
