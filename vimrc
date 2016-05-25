@@ -135,6 +135,7 @@ let g:go_highlight_build_constraints = 1
 let g:go_auto_type_info = 1
 
 let g:SuperTabDefaultCompletionType = "context"
+set completeopt-=preview
 
 "dash search mapping
 :nmap <silent> <leader>d <Plug>DashSearch
@@ -144,3 +145,6 @@ set spelllang=en
 set spellfile=$HOME/dotfiles/vim/spell/en.utf-8.add
 au BufNewFile,BufRead,BufEnter *.md setlocal spell
 au BufNewFile,BufRead,BufEnter *.slide setlocal spell
+
+"open all fold by default http://vim.wikia.com/wiki/All_folds_open_when_opening_a_file
+autocmd Syntax concourse normal zR
