@@ -6,10 +6,7 @@ function fish_right_prompt
   set -l green (set_color -o green)
   set -l normal (set_color normal)
   if test "$stat" != "0"
-    echo -n $red 
-  else
-    echo -n $green 
+    echo $red"exit: $stat"$normal
   end
-    echo "$stat ↵$normal"
 
 end
