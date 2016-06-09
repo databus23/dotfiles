@@ -148,3 +148,6 @@ au BufNewFile,BufRead,BufEnter *.slide setlocal spell
 
 "open all fold by default http://vim.wikia.com/wiki/All_folds_open_when_opening_a_file
 autocmd Syntax concourse normal zR
+
+
+nmap <F12> :TagbarToggle<CR>
