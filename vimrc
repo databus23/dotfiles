@@ -106,7 +106,7 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 "NERDTree stuff
 nmap <Leader>n :NERDTreeToggle<CR>
-let NERDTreeIgnore=['^tmp$', 'pkg$', '^.git$']
+let NERDTreeIgnore=['^tmp$', '^.git$']
 let NERDTreeShowHidden=1
 "autocmd vimenter * if !argc() | NERDTree | endif
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -137,7 +137,9 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+let g:go_highlight_fields = 1
 let g:go_auto_type_info = 1
+let g:go_def_mode = 'godef'
 
 let g:SuperTabDefaultCompletionType = "context"
 set completeopt-=preview
