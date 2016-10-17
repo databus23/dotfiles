@@ -85,6 +85,11 @@ inoremap <right> <nop>
 "nnoremap j gj
 "nnoremap k gk
 
+"Use the arrows to something usefull
+map <left> :BB<CR>
+map <right> :BF<CR>
+map <down> :BD<CR>
+
 " use double j as ESC
 inoremap jj <ESC>
 
