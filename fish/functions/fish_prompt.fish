@@ -14,7 +14,7 @@ end
 
 function _chruby_version
   if begin; functions -q chruby; and test $RUBY_ROOT; end
-    echo (ruby -e 'puts ENV["RUBY_ROOT"][/\d\.\d\.\d(-p\d{3})?$/]')
+    string match -r '\d+\.\d+\.\d+' $RUBY_ROOT
   end
 end
 
@@ -30,18 +30,19 @@ function fish_prompt
   set -l arrow "$red➜ "
   set -l cwd $cyan(basename (prompt_pwd))
 
-  if [ (_rbenv_version) ]
-    set ruby_info (_rbenv_version)
-    set ruby_info " $red‹$ruby_info›"
+  set chruby_version (_chruby_version)
+  if [ $chruby_version ]
+    set ruby_info " $red‹$chruby_version›"
+  else
+    set rbenv_version (_rbenv_version)
+    if [ $rbenv_version ]
+      set ruby_info " $red‹$rbenv_version›"
+    end
   end
 
-  if [ (_chruby_version) ]
-    set ruby_info (_chruby_version)
-    set ruby_info " $red‹$ruby_info›"
-  end
-
-  if [ (_git_branch_name) ]
-    set git_info $yellow(_git_branch_name)
+  set git_branch_name (_git_branch_name)
+  if [ $git_branch_name ]
+    set git_info $yellow$git_branch_name
 
     if [ (_is_git_dirty) ]
       set indicator "$red ✗"
