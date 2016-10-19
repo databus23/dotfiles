@@ -18,6 +18,20 @@ function _chruby_version
   end
 end
 
+
+function _kubectl_context
+  set -l kubectl_namespace ""
+
+  if test -n "$KUBENAMESPACE"
+    set kubectl_namespace "/$KUBENAMESPACE"
+  end
+
+  if type -p monsoonctl > /dev/null
+    echo (monsoonctl config view -o template --template='{{index . "current-context"}}')$kubectl_namespace
+  end
+end
+
+
 function fish_prompt
 
   set -l cyan (set_color -o cyan)
@@ -30,7 +44,7 @@ function fish_prompt
   set -l arrow "$red➜ "
   set -l cwd $cyan(basename (prompt_pwd))
 
-  set chruby_version (_chruby_version)
+  set -l chruby_version (_chruby_version)
   if [ $chruby_version ]
     set ruby_info " $red‹$chruby_version›"
   else
@@ -40,7 +54,12 @@ function fish_prompt
     end
   end
 
-  set git_branch_name (_git_branch_name)
+  set -l kubectl_context (_kubectl_context)
+  if [ $kubectl_context ]
+    set kubectl_info " $blue‹$kubectl_context›"
+  end
+
+  set -l git_branch_name (_git_branch_name)
   if [ $git_branch_name ]
     set git_info $yellow$git_branch_name
 
@@ -53,5 +72,5 @@ function fish_prompt
     set git_info " $yellow‹$git_info$indicator$yellow›"
   end
 
-  echo -n -s $arrow $cwd $ruby_info $git_info $normal ' '
+  echo -n -s $arrow $cwd $ruby_info $kubectl_info $git_info $normal ' '
 end
