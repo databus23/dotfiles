@@ -26,8 +26,12 @@ function _kubectl_context
     set kubectl_namespace "/$KUBENAMESPACE"
   end
 
-  if type -p monsoonctl > /dev/null
-    echo (monsoonctl config view -o template --template='{{index . "current-context"}}')$kubectl_namespace
+  if test -n "$KUBECONTEXT"
+    echo $KUBECONTEXT$kubectl_namespace
+  else
+    if type -p monsoonctl > /dev/null
+      echo (monsoonctl config view -o template --template='{{index . "current-context"}}')$kubectl_namespace
+    end
   end
 end
 
