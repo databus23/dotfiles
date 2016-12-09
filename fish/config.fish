@@ -24,8 +24,10 @@ set PATH $HOME/bin $PATH
 alias ls='ls -A'
 
 #kubectl aliaes
-alias context='kubectl config view --template \'{{index . "current-context"}}\' -o template;echo'
 alias pods='kubectl get pods -o wide'
+alias k='kubectl'
+alias nodes='kubectl get nodes -L zone -L species'
+alias pod='kubectl get pod -o yaml'
 
 #ssh aliases
 alias ssh-no-check='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
