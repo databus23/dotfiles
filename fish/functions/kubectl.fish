@@ -6,10 +6,5 @@ function kubectl
   if test -n "$KUBECONTEXT"
     set args "--context" $KUBECONTEXT $args
   end
-  switch "$KUBECONTEXT"
-    case "ap-au-1"
-      env -u no_proxy GITHUB_TOKEN=$MONSOONCTL_TOKEN https_proxy=http://127.0.0.1:7171 monsoonctl $args
-    case '*'
-      env GITHUB_TOKEN=$MONSOONCTL_TOKEN monsoonctl $args
-  end
+  env GITHUB_TOKEN=$MONSOONCTL_TOKEN monsoonctl $args
 end
