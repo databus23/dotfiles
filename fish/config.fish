@@ -31,6 +31,7 @@ alias pod='kubectl get pod -o yaml'
 
 #ssh aliases
 alias ssh-no-check='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+alias scp-no-check='scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 #git aliases
 alias gs='git status'
 alias ga='git add .'
