@@ -25,6 +25,7 @@ alias ls='ls -A'
 
 #kubectl aliaes
 alias pods='kubectl get pods -o wide'
+alias pods-with-images="kubectl get pods -o custom-columns-file=$HOME/.kube/pods-custom-columns.txt"
 alias k='kubectl'
 alias nodes='kubectl get nodes -L zone -L species'
 alias pod='kubectl get pod -o yaml'
