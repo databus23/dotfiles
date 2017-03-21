@@ -77,4 +77,5 @@ function fish_prompt
   end
 
   echo -n -s $arrow $cwd $ruby_info $kubectl_info $git_info $normal ' '
+  #echo -n -s $arrow $normal ' '
 end
