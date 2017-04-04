@@ -18,8 +18,8 @@ function kssh
 
   set -l hosts (kubectl get nodes $selector -o 'jsonpath={range .items[*]}core@{.metadata.name} {end}')
   if [ $dry_run ]
-    echo pssh -P -t 0 --host="$hosts" $argv
+    echo pssh -P -t 0 --host="$hosts" \'$argv\'
   else
-    pssh -P -t 0 --host="$hosts" $argv
+    pssh -P -t 0 --host="$hosts" \'$argv\'
   end
 end
