@@ -1,17 +1,3 @@
-function _git_branch_name
-  echo (git symbolic-ref HEAD ^/dev/null | sed -e 's|^refs/heads/||')
-end
-
-function _is_git_dirty
-  echo (git status -s --ignore-submodules=dirty ^/dev/null)
-end
-
-function _rbenv_version
-  if type -q -P rbenv
-    echo (rbenv version-name | sed -e 's/ .*//')
-  end
-end
-
 function _chruby_version
   if begin; functions -q chruby; and test $RUBY_ROOT; end
     string match -r '\d+\.\d+\.\d+' $RUBY_ROOT
@@ -30,11 +16,19 @@ function _kubectl_context
     echo $KUBECONTEXT$kubectl_namespace
   else
     if type -p monsoonctl > /dev/null
-      echo (monsoonctl config view -o template --template='{{index . "current-context"}}')$kubectl_namespace
+      echo (monsoonctl config current-context)$kubectl_namespace
     end
   end
 end
 
+
+set __fish_git_prompt_showcolorhints 1
+set __fish_git_prompt_show_informative_status 1
+set __fish_git_prompt_color_prefix yellow
+set __fish_git_prompt_color_suffix yellow
+set __fish_git_prompt_color yellow
+set __fish_git_prompt_color_branch yellow
+set __fish_git_prompt_color_cleanstate green
 
 function fish_prompt
 
@@ -51,11 +45,6 @@ function fish_prompt
   set -l chruby_version (_chruby_version)
   if [ $chruby_version ]
     set ruby_info " $red‹$chruby_version›"
-  else
-    set rbenv_version (_rbenv_version)
-    if [ $rbenv_version ]
-      set ruby_info " $red‹$rbenv_version›"
-    end
   end
 
   set -l kubectl_context (_kubectl_context)
@@ -63,18 +52,7 @@ function fish_prompt
     set kubectl_info " $blue‹$kubectl_context›"
   end
 
-  set -l git_branch_name (_git_branch_name)
-  if [ $git_branch_name ]
-    set git_info $yellow$git_branch_name
-
-    if [ (_is_git_dirty) ]
-      set indicator "$red ✗"
-    else
-      set indicator "$green ✔"
-    end
-
-    set git_info " $yellow‹$git_info$indicator$yellow›"
-  end
+  set git_info (__fish_git_prompt ' <%s>')
 
   echo -n -s $arrow $cwd $ruby_info $kubectl_info $git_info $normal ' '
   #echo -n -s $arrow $normal ' '
