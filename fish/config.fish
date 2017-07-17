@@ -28,6 +28,7 @@ alias pods='kubectl get pods -o wide'
 alias pods-with-images="kubectl get pods -o custom-columns-file=$HOME/.kube/pods-custom-columns.txt"
 alias k='kubectl'
 alias nodes='kubectl get nodes -L zone -L species'
+alias nodes-with-ips="kubectl get nodes -o custom-columns-file=$HOME/.kube/nodes-custom-columns.txt"
 alias pod='kubectl get pod -o yaml'
 
 #ssh aliases

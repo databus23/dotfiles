@@ -79,6 +79,10 @@ done
 for f in `find fish -type f`; do
   symlink $ABSOLUTE_PATH/$f $HOME/.config/$f
 done
+# symlink kube config
+for f in `find kube -type f`; do
+  symlink $ABSOLUTE_PATH/$f $HOME/.kube/${f#kube/}
+done
 
 #back to the original directory
 popd >/dev/null

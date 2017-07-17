@@ -1,0 +1,2 @@
+NAME            Ready                                        IP
+.metadata.name .status.conditions[?(@.type=="Ready")].status .status.addresses[0].address
