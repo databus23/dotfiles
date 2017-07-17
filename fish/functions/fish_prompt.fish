@@ -23,7 +23,7 @@ end
 
 
 set __fish_git_prompt_showcolorhints 1
-set __fish_git_prompt_show_informative_status 1
+set __fish_git_prompt_showdirtystate 1
 set __fish_git_prompt_color_prefix yellow
 set __fish_git_prompt_color_suffix yellow
 set __fish_git_prompt_color yellow
@@ -32,17 +32,15 @@ set __fish_git_prompt_color_cleanstate green
 
 function fish_prompt
 
-  set -l cyan (set_color -o cyan)
-  set -l yellow (set_color -o yellow)
-  set -l green (set_color -o green)
   set -l red (set_color -o red)
   set -l blue (set_color -o blue)
+  set -l cyan (set_color -o cyan)
   set -l normal (set_color normal)
 
   set -l arrow "$red➜ "
-  set -l cwd $cyan(basename (prompt_pwd))
+  set -l cwd $cyan(prompt_pwd)
 
-  set -l chruby_version (_chruby_version)
+  #set -l chruby_version (_chruby_version)
   if [ $chruby_version ]
     set ruby_info " $red‹$chruby_version›"
   end
