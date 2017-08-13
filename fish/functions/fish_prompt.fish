@@ -4,23 +4,24 @@ function _chruby_version
   end
 end
 
-
 function _kubectl_context
-  set -l kubectl_namespace ""
-
-  if test -n "$KUBENAMESPACE"
-    set kubectl_namespace "/$KUBENAMESPACE"
-  end
-
   if test -n "$KUBECONTEXT"
-    echo $KUBECONTEXT$kubectl_namespace
+    echo $KUBECONTEXT
   else
-    if type -p monsoonctl > /dev/null
-      echo (monsoonctl config current-context)$kubectl_namespace
+    if type -t kubectl> /dev/null
+      echo (kubectl config current-context)
     end
   end
 end
 
+function _openstack_context
+  if test -n "$OS_PROJECT_DOMAIN_NAME"
+    echo -n $OS_PROJECT_DOMAIN_NAME
+    if test -n "$OS_PROJECT_NAME"
+       echo /$OS_PROJECT_NAME
+    end
+  end
+end
 
 set __fish_git_prompt_showcolorhints 1
 set __fish_git_prompt_showdirtystate 1
@@ -30,28 +31,38 @@ set __fish_git_prompt_color yellow
 set __fish_git_prompt_color_branch yellow
 set __fish_git_prompt_color_cleanstate green
 
+set __red (set_color -o red)
+set __blue (set_color -o blue)
+set __cyan (set_color -o cyan)
+set __purple (set_color -o purple)
+set __normal (set_color normal)
+
 function fish_prompt
 
-  set -l red (set_color -o red)
-  set -l blue (set_color -o blue)
-  set -l cyan (set_color -o cyan)
-  set -l normal (set_color normal)
-
-  set -l arrow "$red➜ "
-  set -l cwd $cyan(prompt_pwd)
+  set -l arrow "$__red➜ "
+  set -l cwd $__cyan(prompt_pwd)
 
   #set -l chruby_version (_chruby_version)
   if [ $chruby_version ]
-    set ruby_info " $red‹$chruby_version›"
+    set ruby_info " $__red‹$chruby_version›"
   end
 
   set -l kubectl_context (_kubectl_context)
   if [ $kubectl_context ]
-    set kubectl_info " $blue‹$kubectl_context›"
+    if test -n "$KUBENAMESPACE"
+      set kubectl_info " $__blue⎈($kubectl_context/$KUBENAMESPACE)"
+    else
+      set kubectl_info " $__blue⎈($kubectl_context)"
+    end
+  end
+
+  set -l openstack_context (_openstack_context)
+  if [ $openstack_context ]
+    set openstack_info " "$__purple\[$openstack_context\]
   end
 
   set git_info (__fish_git_prompt ' <%s>')
 
-  echo -n -s $arrow $cwd $ruby_info $kubectl_info $git_info $normal ' '
+  echo -n -s $arrow $cwd $ruby_info $kubectl_info $openstack_info $git_info $normal ' '
   #echo -n -s $arrow $normal ' '
 end
