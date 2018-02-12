@@ -1,0 +1,18 @@
+#!/bin/bash
+args=""
+if [ -n "$KUBENAMESPACE" ]; then
+  args="--namespace=$KUBENAMESPACE"
+fi
+
+if [ -n "$KUBECONTEXT" ]; then
+  args="$args --context=$KUBECONTEXT"
+fi
+
+if [ -n "$KUBEPROXY" ] ; then
+  export https_proxy=$KUBEPROXY
+  export http_proxy=$KUBEPROXY
+  export no_proxy=localhost,127.0.0.1
+fi
+
+exec ${KUBECTL:-/usr/local/bin/kubectl} $args "$@"
+

@@ -1,12 +1,9 @@
 set -g fish_greeting ''
 
-#pyhton freaks out without it
+#python freaks out without it
 set -x LC_ALL en_US.UTF-8
 
 set PATH /usr/local/bin /usr/local/sbin $PATH
-if test -f /usr/libexec/java_home
-  set -x JAVA_HOME (/usr/libexec/java_home)
-end
 set -x EDITOR (which vim)
 #load chruby if available
 test -f /usr/local/share/chruby/chruby.fish; and . /usr/local/share/chruby/chruby.fish
@@ -17,7 +14,6 @@ if which -s direnv
   eval (direnv hook fish)
 end
 
-set -x GOPATH ~/gocode
 set PATH $GOPATH/bin $PATH
 set PATH $HOME/bin $PATH
 

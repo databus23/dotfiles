@@ -83,6 +83,10 @@ done
 for f in `find kube -type f`; do
   symlink $ABSOLUTE_PATH/$f $HOME/.kube/${f#kube/}
 done
+# symlink ~/bin
+for f in `find bin -type f`; do
+  symlink $ABSOLUTE_PATH/$f $HOME/bin/${f#bin/}
+done
 
 #back to the original directory
 popd >/dev/null
