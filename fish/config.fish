@@ -19,11 +19,12 @@ set PATH $HOME/bin $PATH
 
 alias ls='ls -A'
 
+alias yaml2json="ruby -rjson -ryaml -e 'puts JSON.pretty_generate(YAML.load(STDIN.read))'"
 #kubectl aliaes
 alias pods='kubectl get pods -o wide'
 alias pods-with-images="kubectl get pods -o custom-columns-file=$HOME/.kube/pods-custom-columns.txt"
 alias k='kubectl'
-alias nodes='kubectl get nodes -L zone -L species'
+alias nodes='kubectl get nodes -L species -L failure-domain.beta.kubernetes.io/zone'
 alias nodes-with-ips="kubectl get nodes -o custom-columns-file=$HOME/.kube/nodes-custom-columns.txt"
 alias pod='kubectl get pod -o yaml'
 
@@ -38,8 +39,7 @@ alias gd='git diff'
 alias gdt='git difftool'
 alias gt='gittower .'
 
-alias listening_ports='sudo lsof -P -n -i|grep LISTEN|sort -k5'
-alias flushdns='sudo killall -HUP mDNSResponder'
+alias listening_ports='lsof -P -n -i|grep LISTEN|sort -k5'
 #vagrant aliases
 alias vu='vagrant up'
 alias vs='vagrant status'

@@ -8,6 +8,9 @@ if [ -n "$KUBECONTEXT" ]; then
   args="$args --context=$KUBECONTEXT"
 fi
 
+monsoonctl --github-token=$(security find-generic-password -a $USER -s monsoonctl -w) --context=$KUBECONTEXT
+kubernikusctl auth refresh --context=$KUBECONTEXT
+
 if [ -n "$KUBEPROXY" ] ; then
   export https_proxy=$KUBEPROXY
   export http_proxy=$KUBEPROXY

@@ -1,2 +1,2 @@
-NAME            IP           STATUS           NODE          IMAGES
-.metadata.name .status.podIP .status.phase spec.nodeName .status.containerStatuses[*].image 
+NAME            NAMESPACE IP        STATUS           NODE          IMAGES
+.metadata.name .metadata.namespace .status.podIP .status.phase spec.nodeName .status.containerStatuses[*].image 
