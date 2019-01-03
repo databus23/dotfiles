@@ -18,6 +18,7 @@ set PATH $GOPATH/bin $PATH
 set PATH $HOME/bin $PATH
 
 alias ls='ls -A'
+alias mtr='sudo mtr'
 
 alias yaml2json="ruby -rjson -ryaml -e 'puts JSON.pretty_generate(YAML.load(STDIN.read))'"
 #kubectl aliaes
@@ -37,7 +38,7 @@ alias ga='git add .'
 alias gc='git commit'
 alias gd='git diff'
 alias gdt='git difftool'
-alias gt='gittower .'
+alias gt='gittower (git rev-parse --show-toplevel)'
 
 alias listening_ports='lsof -P -n -i|grep LISTEN|sort -k5'
 #vagrant aliases
