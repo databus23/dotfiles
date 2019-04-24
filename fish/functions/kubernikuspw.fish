@@ -21,7 +21,7 @@ function kubernikuspw
   set -q KS_NAMESPACE; and set -l namespace $KS_NAMESPACE
   echo "Fetching node password for kluster $context ($server)" >&2
   #echo kubectl --context $parent_context --namespace $namespace get secret $kluster_fqdn -o go-template --template='{{index .data "node-password" }}'
-  set -l pwb64 (kubectl --context $parent_context --namespace $namespace get secret $kluster_fqdn -o go-template --template='{{index .data "node-password" }}' | grep -v "<no value>")
+  set -l pwb64 (kubectl --context $parent_context --namespace $namespace get secret $kluster_fqdn-secret -o go-template --template='{{index .data "node-password" }}' | grep -v "<no value>")
   if [ $pwb64 ]
     echo "$pwb64" | base64 -D
   end

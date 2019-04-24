@@ -51,6 +51,8 @@ alias r='bundle exec rails'
 alias be='bundle exec'
 alias delete_swp_files='find . -name \*.swp -delete'
 
+alias gnuenv='env PATH=/usr/local/opt/coreutils/libexec/gnubin:(string join ':' $PATH)'
+
 function fish_user_key_bindings
   bind \e.       'history-token-search-backward'
   bind \e\[1\;9A 'history-token-search-backward'
