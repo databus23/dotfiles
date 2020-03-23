@@ -9,8 +9,8 @@ endif
 
 if has('python3')
     command! -nargs=1 Py py3 <args>
-    set pythonthreedll=/usr/local/Frameworks/Python.framework/Versions/3.6/Python
-    set pythonthreehome=/usr/local/Frameworks/Python.framework/Versions/3.6
+    set pythonthreedll=/usr/local/Frameworks/Python.framework/Versions/3.7/Python
+    set pythonthreehome=/usr/local/Frameworks/Python.framework/Versions/3.7
 else
     command! -nargs=1 Py py <args>
     set pythondll=/usr/local/Frameworks/Python.framework/Versions/2.7/Python
@@ -143,7 +143,7 @@ au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 let g:go_fmt_command = "goimports"
 
 let g:go_highlight_functions = 1
-let g:go_highlight_function_argument = 1
+let g:go_highlight_function_parameters = 1
 let g:go_highlight_function_calls = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_types = 1
@@ -153,6 +153,8 @@ let g:go_highlight_format_strings = 1
 let g:go_auto_type_info = 1
 let g:go_updatetime = 400
 let g:go_auto_sameids = 1
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 
 let g:SuperTabDefaultCompletionType = "context"
 set completeopt-=preview

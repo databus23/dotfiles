@@ -2,7 +2,8 @@ function kubernikuspw
   set -l context $KUBECONTEXT
   test  (count $argv) -gt 0; and set -l context $argv[1]
 
-  set -l server (kubectl config view -o jsonpath="{.clusters[?(@.name == \"$context\")].cluster.server}")
+  set -l cluster (kubectl config view -o jsonpath="{.contexts[?(@.name == \"$context\")].context.cluster}")
+  set -l server (kubectl config view -o jsonpath="{.clusters[?(@.name == \"$cluster\")].cluster.server}")
   set -l kluster_fqdn (echo $server | sed -n "s!https://\([^.]*\).*!\1!p")
   set -l parent_domain (echo $server | sed -n "s!https://[^.]*\.[^.]*\.\([^.]*\)\.cloud\.sap!\1!p")
 

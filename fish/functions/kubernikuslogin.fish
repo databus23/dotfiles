@@ -10,5 +10,5 @@ function kubernikuslogin
     echo "Copied node password to clipboard"
   end
   echo "ssh core@$internal_ip"
-  ssh core@$internal_ip
+  ssh-no-check core@$internal_ip
 end
