@@ -130,8 +130,8 @@ if has("win32")
   command! -bar Fullscreen :call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
 endif
 
-"fugitive settings
-let g:fugitive_github_domains = ['github.com', 'github.wdf.sap.corp']
+" vim-rhubarb
+let g:github_enterprise_urls = ['https://github.wdf.sap.corp']
 
 "go specific stuff
 au FileType go nmap <leader>r <Plug>(go-run)
