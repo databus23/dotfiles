@@ -14,6 +14,7 @@ if which -s direnv
   eval (direnv hook fish)
 end
 
+set PATH $HOME/.krew/bin $PATH
 set PATH $GOPATH/bin $PATH
 set PATH $HOME/bin $PATH
 
@@ -25,9 +26,10 @@ alias yaml2json="ruby -rjson -ryaml -e 'puts JSON.pretty_generate(YAML.load(STDI
 alias pods='kubectl get pods -o wide'
 alias pods-with-images="kubectl get pods -o custom-columns-file=$HOME/.kube/pods-custom-columns.txt"
 alias k='kubectl'
-alias nodes='kubectl get nodes -L species -L failure-domain.beta.kubernetes.io/zone'
+alias nodes='kubectl get nodes -L failure-domain.beta.kubernetes.io/zone -L cloud.sap/maintenance-state'
 alias nodes-with-ips="kubectl get nodes -o custom-columns-file=$HOME/.kube/nodes-custom-columns.txt"
 alias pod='kubectl get pod -o yaml'
+alias pvs="kubectl get pv -o custom-columns-file=$HOME/.kube/pv-custom-columns.txt"
 
 #ssh aliases
 alias ssh-no-check='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'

@@ -7,15 +7,11 @@ if &shell =~# 'fish$'
     set shell=/bin/bash
 endif
 
-if has('python3')
+"if has('python3')
     command! -nargs=1 Py py3 <args>
-    set pythonthreedll=/usr/local/Frameworks/Python.framework/Versions/3.7/Python
-    set pythonthreehome=/usr/local/Frameworks/Python.framework/Versions/3.7
-else
-    command! -nargs=1 Py py <args>
-    set pythondll=/usr/local/Frameworks/Python.framework/Versions/2.7/Python
-    set pythonhome=/usr/local/Frameworks/Python.framework/Versions/2.7
-endif
+    set pythonthreedll=/usr/local/Frameworks/Python.framework/Versions/Current/Python
+"endif
+
 
 "pathogen init
 runtime macros/matchit.vim
@@ -155,6 +151,8 @@ let g:go_updatetime = 400
 let g:go_auto_sameids = 1
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
+let g:go_metalinter_command = 'golangci-lint'
+let g:go_metalinter_enabled = []
 
 let g:SuperTabDefaultCompletionType = "context"
 set completeopt-=preview
@@ -167,10 +165,6 @@ set spelllang=en
 set spellfile=$HOME/dotfiles/vim/spell/en.utf-8.add
 au BufNewFile,BufRead,BufEnter *.md setlocal spell
 au BufNewFile,BufRead,BufEnter *.slide setlocal spell
-
-"open all fold by default http://vim.wikia.com/wiki/All_folds_open_when_opening_a_file
-autocmd Syntax concourse normal zR
-
 
 nmap <F12> :TagbarToggle<CR>
 

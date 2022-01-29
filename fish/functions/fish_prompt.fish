@@ -9,7 +9,7 @@ function _kubectl_context
     echo $KUBECONTEXT
   else
     if type -t kubectl> /dev/null
-      echo (/usr/local/bin/kubectl config current-context ^ /dev/null)
+      echo (kubectl  config current-context ^ /dev/null)
     end
   end
 end

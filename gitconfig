@@ -25,3 +25,7 @@
   lg   = !source ~/.githelpers && pretty_github_log    # pretty log
   ci   = commit
   deltag = !sh -c 'git tag -d $1 && git push origin :refs/tags/$1' -
+[pull]
+	ff = only
+[init]
+	defaultBranch = main

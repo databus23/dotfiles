@@ -1,6 +1,14 @@
 #!/bin/bash
+[ -n "$KUBECTL_DEBUG" ] && echo "IN: kubectl ${@}" >> $HOME/.kube/kubectl.debug
 KUBECTL=kubectl-1.15.9
-if [[ "$1" =~ ^(sync|logon)$ ]]; then
+
+if [ -n "$KUBEPROXY" ]; then
+  export https_proxy=$KUBEPROXY
+  export http_proxy=$KUBEPROXY
+  export no_proxy=localhost,127.0.0.1
+fi
+
+if [[ "$1" =~ ^(sync|logon|controlplane|krew|config)$ ]]; then
   exec $KUBECTL "$@"
 fi
 
@@ -11,22 +19,14 @@ fi
 if [ -n "$KUBECONTEXT" ]; then
   args="$args --context=$KUBECONTEXT"
 
-  kctx=$($KUBECTL config get-contexts $KUBECONTEXT --no-headers)
+  kctx=$($KUBECTL config get-contexts $KUBECONTEXT --no-headers 2>/dev/null)
   #try to discover kubernetes version from cluster name
   minorVersion=$(echo $kctx | sed -E -n 's!.*kubectl-sync:[^:]+:[^:]+:1\.([0-9]{1,2})\..*!\1!p')
   if [ -n "$minorVersion" ]; then
     gurbel=(~/bin/kubectl-1.$minorVersion.*)
     KUBECTL=${gurbel[0]}
   fi
-  if echo $kctx | grep -q client@kubernetes.$KUBECONTEXT.cloud.sap; then
-    monsoonctl --github-token=$(security find-generic-password -a $USER -s monsoonctl -w) --context=$KUBECONTEXT
-  fi
 fi
 
-if [ -n "$KUBEPROXY" ] ; then
-  export https_proxy=$KUBEPROXY
-  export http_proxy=$KUBEPROXY
-  export no_proxy=localhost,127.0.0.1
-fi
-
-exec $KUBECTL $args "$@"
+[ -n "$KUBECTL_DEBUG" ] && echo OUT: $KUBECTL $1 $args "${@:2}" >> $HOME/.kube/kubectl.debug
+exec $KUBECTL $1 $args "${@:2}"

@@ -1,28 +1,14 @@
 function kubernikuspw
-  set -l context $KUBECONTEXT
-  test  (count $argv) -gt 0; and set -l context $argv[1]
+  set -l kluster_fqdn $argv[1]
+  set -l parent_context $KUBECONTEXT
+  test  (count $argv) -gt 1; and set -l parent_context $argv[2]
 
-  set -l cluster (kubectl config view -o jsonpath="{.contexts[?(@.name == \"$context\")].context.cluster}")
-  set -l server (kubectl config view -o jsonpath="{.clusters[?(@.name == \"$cluster\")].cluster.server}")
-  set -l kluster_fqdn (echo $server | sed -n "s!https://\([^.]*\).*!\1!p")
-  set -l parent_domain (echo $server | sed -n "s!https://[^.]*\.[^.]*\.\([^.]*\)\.cloud\.sap!\1!p")
 
-  set -l parent_context
-  set -l namespace
+  set -l namespace kubernikus
 
-  switch $parent_domain
-  case admin
-    set parent_context admin
-    set namespace $context
-  case '*'
-    set parent_context k-$parent_domain
-    set namespace kubernikus
-  end
-
-  set -q KS_NAMESPACE; and set -l namespace $KS_NAMESPACE
-  echo "Fetching node password for kluster $context ($server)" >&2
+  echo "Fetching node password for kluster $kluster_fqdn" >&2
   #echo kubectl --context $parent_context --namespace $namespace get secret $kluster_fqdn -o go-template --template='{{index .data "node-password" }}'
-  set -l pwb64 (kubectl --context $parent_context --namespace $namespace get secret $kluster_fqdn-secret -o go-template --template='{{index .data "node-password" }}' | grep -v "<no value>")
+  set -l pwb64 (kubectl --context=$parent_context --namespace=$namespace get secret $kluster_fqdn-secret -o go-template --template='{{index .data "node-password" }}' | grep -v "<no value>")
   if [ $pwb64 ]
     echo "$pwb64" | base64 -D
   end

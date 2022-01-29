@@ -1,2 +1,2 @@
-Name            Ready                                        IP InstanceID
-.metadata.name .status.conditions[?(@.type=="Ready")].status .status.addresses[0].address .spec.externalID
+Name            Ready                                        IP InstanceID Maintenance-State FCRebootNeeded FCRebootPaused FCRebootOK
+.metadata.name .status.conditions[?(@.type=="Ready")].status .status.addresses[0].address .spec.providerID .metadata.labels.cloud\.sap/maintenance-state .metadata.annotations.flatcar-linux-update\.v1\.flatcar-linux\.net/reboot-needed .metadata.annotations.flatcar-linux-update\.v1\.flatcar-linux\.net/reboot-paused flatcar-linux-update\.v1\.flatcar-linux\.net/reboot-ok

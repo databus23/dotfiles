@@ -1,2 +1,2 @@
 NAME            NAMESPACE          IMAGES
-.metadata.name .metadata.namespace .status.containerStatuses[*].image 
+.metadata.name .metadata.namespace .spec.containers[*].image 
