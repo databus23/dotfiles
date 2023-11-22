@@ -7,5 +7,5 @@ else
   set guifont=Menlo:h14
 endif
 " Don't show a toolbar
-set guioptions=e-t
+" set guioptions=e-t
 

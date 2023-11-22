@@ -3,7 +3,6 @@ set -g fish_greeting ''
 #python freaks out without it
 set -x LC_ALL en_US.UTF-8
 
-set PATH /usr/local/bin /usr/local/sbin $PATH
 set -x EDITOR (which vim)
 #load chruby if available
 test -f /usr/local/share/chruby/chruby.fish; and . /usr/local/share/chruby/chruby.fish
@@ -13,10 +12,6 @@ test -f /usr/local/share/chruby/chruby.fish; and . /usr/local/share/chruby/auto.
 if which -s direnv
   eval (direnv hook fish)
 end
-
-set PATH $HOME/.krew/bin $PATH
-set PATH $GOPATH/bin $PATH
-set PATH $HOME/bin $PATH
 
 alias ls='ls -A'
 alias mtr='sudo mtr'
@@ -43,15 +38,6 @@ alias gdt='git difftool'
 alias gt='gittower (git rev-parse --show-toplevel)'
 
 alias listening_ports='lsof -P -n -i|grep LISTEN|sort -k5'
-#vagrant aliases
-alias vu='vagrant up'
-alias vs='vagrant status'
-alias vp='vagrant provision'
-
-#rails aliases
-alias r='bundle exec rails'
-alias be='bundle exec'
-alias delete_swp_files='find . -name \*.swp -delete'
 
 alias gnuenv='env PATH=/usr/local/opt/coreutils/libexec/gnubin:(string join ':' $PATH)'
 
@@ -67,4 +53,9 @@ end
 set platform (uname| tr '[:upper:]' '[:lower:]')
 test -f ~/.config/fish/$platform.fish; and . ~/.config/fish/$platform.fish
 test -f ~/.config/fish/config.local.fish; and . ~/.config/fish/config.local.fish
-test -f /usr/local/share/autojump/autojump.fish; and . /usr/local/share/autojump/autojump.fish
+[ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
+
+set PATH $HOME/.krew/bin $PATH
+set PATH $GOPATH/bin $PATH
+set PATH $HOME/bin $PATH
+
